@@ -56,19 +56,14 @@ RUN tns usage-reporting disable && tns error-reporting disable
 WORKDIR "/vocab-nativescript"
 
 COPY *.json *.js *.ts ./
-COPY app/vendor* app/App_Resources ./app/
-
+COPY app/vendor* ./app/
+COPY app/App_Resources ./app/App_Resources
 
 RUN tns platform add android
 
-COPY app ./app 
+COPY app ./app
 
 
-#RUN mkdir /gitroot && cd /gitroot && git clone --depth=1 https://github.com/eric7237cire/vocab.git && cd vocab 
-
-
-
-#RUN tns prepare android
 RUN tns build android
 
 #RUN mkdir /sdcard
