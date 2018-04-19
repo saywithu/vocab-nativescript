@@ -6,7 +6,7 @@ services:
   - docker
 env:
   global:
-    - Description="NativeScript docker build"
+    - DESCRIPTION="NativeScript docker build"
     - DOCKER_IMAGE="eric7237cire/vocab-nativescript"
 
 before_install:
