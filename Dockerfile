@@ -54,17 +54,19 @@ RUN echo n | npm install -g nativescript
 RUN tns usage-reporting disable && tns error-reporting disable 
 
 
-#RUN tns platform add android
+COPY *.json *.js *.ts ./
+
+RUN tns platform add android
 
 COPY app ./app 
-COPY *.json *.js *.ts ./
+
 
 #RUN mkdir /gitroot && cd /gitroot && git clone --depth=1 https://github.com/eric7237cire/vocab.git && cd vocab 
 
 #WORKDIR "/gitroot/vocab/unified_front_end/nativescript"
 
 #RUN tns prepare android
-RUN tns build android 
+RUN tns build android
 
 #RUN mkdir /sdcard
 
@@ -79,7 +81,7 @@ RUN tns build android
 #RUN android-avdmanager-create "avdmanager --verbose create avd --package \"$ANDROID_EMULATOR_PACKAGE\" --name test --abi \"google_apis/x86\""
 
 
-#RUN npm run tsc
+RUN npm run tsc
 
 # apt-get install qt5-default
 # /usr/local/android-sdk-linux/emulator/emulator64-arm -avd test -noaudio -no-window -gpu off -verbose &
