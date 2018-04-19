@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/eric7237cire/vocab-nativescript.svg?branch=master)](https://travis-ci.org/eric7237cire/vocab-nativescript)
+
+
+
 ```
 $ANDROID_HOME/tools/bin/avdmanager list avds
 
