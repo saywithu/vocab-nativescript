@@ -5,8 +5,9 @@ sudo: required
 services:
   - docker
 env:
-  - Description="NativeScript docker build"
-  - DOCKER_IMAGE="eric7237cire/vocab-nativescript"
+  global:
+    - Description="NativeScript docker build"
+    - DOCKER_IMAGE="eric7237cire/vocab-nativescript"
 
 before_install:
   - echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
