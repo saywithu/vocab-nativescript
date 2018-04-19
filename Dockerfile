@@ -53,8 +53,11 @@ RUN npm i
 RUN echo n | npm install -g nativescript
 RUN tns usage-reporting disable && tns error-reporting disable 
 
+WORKDIR "/vocab-nativescript"
 
 COPY *.json *.js *.ts ./
+COPY app/vendor* app/App_Resources ./app/
+
 
 RUN tns platform add android
 
@@ -63,7 +66,7 @@ COPY app ./app
 
 #RUN mkdir /gitroot && cd /gitroot && git clone --depth=1 https://github.com/eric7237cire/vocab.git && cd vocab 
 
-#WORKDIR "/gitroot/vocab/unified_front_end/nativescript"
+
 
 #RUN tns prepare android
 RUN tns build android
