@@ -1,33 +1,59 @@
 import * as _ from "lodash";
 
-export class LinkType  {
-    private static linkTypes : Array<LinkType> = [];
+export class LinkType {
+    private static linkTypes: Array<LinkType> = [];
 
-    private constructor(public readonly description: string, private readonly template_url: string) {
+    private constructor(
+        public readonly description: string,
+        private readonly template_url: string
+    ) {
         LinkType.linkTypes.push(this);
     }
 
     private static WORD_TOKEN = "<<<word>>>";
 
-    static readonly W_EN = new LinkType("Wiktionary (EN)", `https://en.wiktionary.org/wiki/${LinkType.WORD_TOKEN}`);
-     static readonly W_RU = new LinkType("Wiktionary (RU)",  `https://ru.wiktionary.org/wiki/${LinkType.WORD_TOKEN}`);
-     static readonly GOOGLE = new LinkType("Google", `https://www.google.com/search?q=${LinkType.WORD_TOKEN}`);
-     static readonly PRONOUNCE = new LinkType("Pronounce", `https://forvo.com/word/${LinkType.WORD_TOKEN}/#ru`);
-     static readonly ACADEMIC_RU = new LinkType( "Academic ru", `https://translate.academic.ru/${LinkType.WORD_TOKEN}/ru/en/` );
-     static readonly GOOGLE_TRANSLATE = new LinkType( "google translate", `https://translate.google.com/#ru/en/${LinkType.WORD_TOKEN}` );
+    static readonly DICT = new LinkType(
+        "Dict.com",
+        `https://www.dict.com/Russian-English/${LinkType.WORD_TOKEN}`
+    );
+    static readonly W_EN = new LinkType(
+        "Wiktionary (EN)",
+        `https://en.wiktionary.org/wiki/${LinkType.WORD_TOKEN}`
+    );
+    static readonly W_RU = new LinkType(
+        "Wiktionary (RU)",
+        `https://ru.wiktionary.org/wiki/${LinkType.WORD_TOKEN}`
+    );
+    static readonly GOOGLE = new LinkType(
+        "Google",
+        `https://www.google.com/search?q=${LinkType.WORD_TOKEN}`
+    );
+    static readonly PRONOUNCE = new LinkType(
+        "Pronounce",
+        `https://forvo.com/word/${LinkType.WORD_TOKEN}/#ru`
+    );
+    static readonly ACADEMIC_RU = new LinkType(
+        "Academic ru",
+        `https://translate.academic.ru/${LinkType.WORD_TOKEN}/ru/en/`
+    );
+    static readonly GOOGLE_TRANSLATE = new LinkType(
+        "google translate",
+        `https://translate.google.com/#ru/en/${LinkType.WORD_TOKEN}`
+    );
 
-     get_url(russian_word: string) : string {
-         //remove {}
+    get_url(russian_word: string): string {
+        //remove {}
         let r_word = russian_word.replace(/[\{\}]/g, "").toLowerCase();
-        return this.template_url.replace(LinkType.WORD_TOKEN, encodeURIComponent(r_word));
-     }
+        return this.template_url.replace(
+            LinkType.WORD_TOKEN,
+            encodeURIComponent(r_word)
+        );
+    }
 
-     static getAll() : Array<LinkType> {
-         return LinkType.linkTypes;
-     }
+    static getAll(): Array<LinkType> {
+        return LinkType.linkTypes;
+    }
 }
-
-
 
 export function prefix_slash(path: string): string {
     return `/${path}`;
@@ -35,25 +61,30 @@ export function prefix_slash(path: string): string {
 
 export function stringify(obj): string {
     const cache = [];
-    return JSON.stringify(obj, (key, value) => {
-        if (typeof value === "object" && value !== null) {
-            if (cache.indexOf(value) !== -1) {
-                // Circular reference found, discard key
-                return;
+    return JSON.stringify(
+        obj,
+        (key, value) => {
+            if (typeof value === "object" && value !== null) {
+                if (cache.indexOf(value) !== -1) {
+                    // Circular reference found, discard key
+                    return;
+                }
+                // Store value in our collection
+                cache.push(value);
             }
-            // Store value in our collection
-            cache.push(value);
-        }
-        return value;
-    }, 2);
+            return value;
+        },
+        2
+    );
 }
 
 const mappings: Map<string, string> = new Map([
     ["ćh", "ч"],
+    ["çh", "ч"],
     ["'ch", "ч"],
     ["'ts", "ц"],
     ["`h", "ъ"],
-    ["'bi", "ы"],
+    ["bi", "ы"],
     //["'bl", "ы"],
     ["`b", "ь"],
     ["a", "а"],
@@ -171,8 +202,6 @@ export function un_transliterate(ruChars: string) {
 
     return ruChars;
 }
-
-
 
 export const RUSSIAN_ALPHABET = [
     "А а",

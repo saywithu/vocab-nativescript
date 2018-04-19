@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true,
+		"files.exclude": {
+			//"**/*.tns.*": true,
+			"app/**/*.js": true,
+			"app/**/*.css": true,
+			"node_modules": true,
+		}
+	}
+}

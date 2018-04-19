@@ -9,17 +9,34 @@ import {getAllTags} from "../../../word/store/reducers";
 
 import * as _ from "lodash";
 
-import {takeUntil} from "rxjs/operators/takeUntil";
+import { takeUntil } from "rxjs/operators/takeUntil";
 
-import {map} from "rxjs/operators/map";
-import {Logger} from "../../../services/logger";
-import {ILogger} from "../../../services/logger.common";
-import {QUESTION_LIST_TITLE} from "../../question.routes";
-import {AllQuestionTypes, generate_fill_in_blank, IQuestion, QuestionType} from "../../models/questions";
-import {getAllQuestions, getSelectedTagIds, ISelectedTagIds, selectStatus, State} from "../../store/reducers";
-import {ITag} from "../../../word/models/word";
-import {HttpHelperServiceCommon, QuestionAnswer} from "../../../services/http_helper.common";
-import {mergeMap} from "rxjs/operators/mergeMap";
+import { map } from "rxjs/operators/map";
+import {
+    LinkType,
+} from "../../../common/utils/String";
+import { Logger } from "../../../services/logger";
+import { ILogger } from "../../../services/logger.common";
+import { QUESTION_LIST_TITLE } from "../../question.routes";
+import {
+    AllQuestionTypes,
+    IQuestion,
+    QuestionType,
+    generate_fill_in_blank
+} from "../../models/questions";
+import {
+    getAllQuestions,
+    selectStatus,
+    State,
+    getSelectedTagIds,
+    ISelectedTagIds
+} from "../../store/reducers";
+import { ITag } from "../../../word/models/word";
+import {
+    HttpHelperServiceCommon,
+    QuestionAnswer
+} from "../../../services/http_helper.common";
+import { mergeMap } from "rxjs/operators/mergeMap";
 
 export interface QuestionAnswerWithQuestionObject extends QuestionAnswer {
     question: AllQuestionTypes;
@@ -45,6 +62,8 @@ export class QuestionListCommonComponent
 
     protected log: ILogger;
     private is_edit_map: { [key: number]: boolean } = {};
+
+    selectedLinkType: LinkType = LinkType.DICT;
 
     constructor(
         private store: Store<State>,
@@ -150,7 +169,7 @@ export class QuestionListCommonComponent
     handleCreateNewQuestion() {
         let question_type = this.newQuestionType;
         let new_question: Partial<AllQuestionTypes>;
-        if (question_type == QuestionType.MultipleChoiceQuestion) {
+        if (question_type === QuestionType.MultipleChoiceQuestion) {
             new_question = {
                 question_ru: "н",
                 question_en: "",
@@ -158,7 +177,7 @@ export class QuestionListCommonComponent
                 correct_answer_index: 0,
                 resourcetype: question_type.name
             };
-        } else if (question_type == QuestionType.FillInBlankQuestion) {
+        } else if (question_type === QuestionType.FillInBlankQuestion) {
             new_question = {
                 resourcetype: question_type.name,
                 ...generate_fill_in_blank("{н}H")
@@ -183,7 +202,7 @@ export class QuestionListCommonComponent
             field_data.question
         );
 
-        if (field_data.prop_name != "id") {
+        if (field_data.prop_name !== "id") {
             this.store.dispatch(
                 new QuestionActions.UpdateQuestion({
                     ...field_data.question,

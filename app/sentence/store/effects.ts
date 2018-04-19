@@ -367,7 +367,7 @@ export class Effects {
                         catchError(err => {
                             this.log.warning("Http failure", err);
                             return of(
-                                new SentenceActions.ActionError(stringify(err))
+                                new SentenceActions.UpdateSentenceFailure(stringify(err))
                             );
                         })
                     );

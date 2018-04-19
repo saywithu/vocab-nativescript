@@ -22,13 +22,13 @@
     <StackLayout orientation="horizontal">
         <Button class="button-style"
                 text="New"
-                (tap)="handleNewSentence($event)"></Button>
+                (tap)="handleNewSentence()"></Button>
         <Button class="button-style"
                 text="Save"
-                (tap)="handleSaveSentence($event, editSentence)"></Button>
+                (tap)="handleSaveSentence(editSentence)"></Button>
         <Button class="button-style"
                 text="Delete"
-                (tap)="handleDeleteSentence($event)"></Button>
+                (tap)="handleDeleteSentence()"></Button>
     </StackLayout>
 
     <ScrollView orientation="vertical"

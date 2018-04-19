@@ -8,6 +8,7 @@ export type Action = AppActions.All;
 import * as fromRoot from "../../store";
 
 import { Lesson, ISentence } from "../models";
+import { stringify } from "../../common/utils/String";
 
 export interface SentenceState {
     status: string;
@@ -69,6 +70,12 @@ export function sentence_state_reducer(
                 ...state,
                 status: action.payload
             };
+        }
+        case SentenceActionTypes.UPDATE_SENTENCE_FAILURE: {
+            return {
+                ...state,
+                status: "Failed to update sentence: " + stringify(action.payload)
+            }
         }
         case SentenceActionTypes.GET_LESSONS_SUCCESS: {
             return {

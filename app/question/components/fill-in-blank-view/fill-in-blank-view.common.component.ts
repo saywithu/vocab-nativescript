@@ -11,20 +11,15 @@ import * as _ from "lodash";
 import { Logger } from "../../../services/logger";
 import { ILogger } from "../../../services/logger.common";
 import {
-    AllQuestionTypes,
-    generate_fill_in_blank,
     IFillInBlankQuestion,
-    IQuestion,
-    QuestionType
+    
 } from "../../models/questions";
-import { EventEmitter, Input, Output } from "@angular/core";
-import { QuestionAnswerWithQuestionObject } from "../question-list/question-list.common.component";
+import {  Input } from "@angular/core";
 import { HttpHelperServiceCommon } from "../../../services/http_helper.common";
 
 import { Store } from "@ngrx/store";
 import { State } from "../../store/reducers";
-import * as QuestionActions from "../../store/actions";
-import { mergeMap } from "rxjs/operators/mergeMap";
+//import * as QuestionActions from "../../store/actions";
 
 @Component({template: ""})
 export class FillInBlankViewCommonComponent implements OnInit, OnChanges {

@@ -54,23 +54,28 @@ RUN echo n | npm install -g nativescript
 RUN tns usage-reporting disable && tns error-reporting disable 
 
 
-RUN mkdir /gitroot && cd /gitroot && git clone --depth=1 https://github.com/eric7237cire/vocab.git && cd vocab 
+#RUN tns platform add android
 
-WORKDIR "/gitroot/vocab/unified_front_end/nativescript"
+COPY app ./app 
+COPY *.json *.js *.ts ./
 
-RUN tns platform add android 
+#RUN mkdir /gitroot && cd /gitroot && git clone --depth=1 https://github.com/eric7237cire/vocab.git && cd vocab 
+
+#WORKDIR "/gitroot/vocab/unified_front_end/nativescript"
+
+RUN tns prepare android
 RUN tns build android 
 
-RUN mkdir /sdcard
+#RUN mkdir /sdcard
 
 # Create fake keymap file
 #RUN mkdir /usr/local/android-sdk/tools/keymaps && \
 #    touch /usr/local/android-sdk/tools/keymaps/en-us
 
 # Install custom tools
-COPY tools /opt/tools
+#COPY tools /opt/tools
 
-RUN android-avdmanager-create "avdmanager --verbose create avd --package \"$ANDROID_EMULATOR_PACKAGE\" --name test --abi \"google_apis/armeabi-v7a\"" 
+#RUN android-avdmanager-create "avdmanager --verbose create avd --package \"$ANDROID_EMULATOR_PACKAGE\" --name test --abi \"google_apis/armeabi-v7a\"" 
 #RUN android-avdmanager-create "avdmanager --verbose create avd --package \"$ANDROID_EMULATOR_PACKAGE\" --name test --abi \"google_apis/x86\""
 
 

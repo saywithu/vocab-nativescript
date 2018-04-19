@@ -27,6 +27,7 @@ import * as QuestionActions from "../../store/actions";
 @Component({template: ""})
 export class FillInBlankEditCommonComponent implements OnInit {
     @Input() inputQuestion: IFillInBlankQuestion;
+    @Input() linkType: LinkType = LinkType.DICT;
     @Output() save = new EventEmitter<Partial<IFillInBlankQuestion>>();
     @Output()
     saveField = new EventEmitter<{
@@ -37,7 +38,7 @@ export class FillInBlankEditCommonComponent implements OnInit {
     @Output() doneEdit = new EventEmitter();
 
     editQuestion: Partial<IFillInBlankQuestion>;
-    selectedLinkType = LinkType.W_EN;
+    
 
     isSaving = false;
 
