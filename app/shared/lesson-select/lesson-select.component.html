@@ -1,0 +1,42 @@
+<DockLayout class="nav"
+            stretchLastChild="true"
+            *ngIf="lessons && selectedLessonIndex >= 0 && lessons[selectedLessonIndex]">
+        <Button text="<<"
+                dock="left"
+                (tap)="lessonSelected.emit( {lesson_index: selectedLessonIndex -5, force_reload: false})"></Button>
+        <Button text="<"
+                dock="left"
+                (tap)="lessonSelected.emit( {lesson_index: selectedLessonIndex -1, force_reload: false})"></Button>
+
+        <Button text=">>"
+                dock="right"
+                (tap)="lessonSelected.emit( {lesson_index: selectedLessonIndex + 5, force_reload: false})"></Button>
+
+        <Button text=">"
+                dock="right"
+                (tap)="lessonSelected.emit( {lesson_index: selectedLessonIndex + 1, force_reload: false})"></Button>
+
+
+        <Label class="lesson-label"
+               [text]="'Урок: ' + lessons[selectedLessonIndex].exercise_number + '(' + selectedLessonIndex + ')'"></Label>
+
+
+        <!--<NumberPicker style="vertical-align:center; font-size:18; width:100%" 
+            [value]="selectedLessonIndex" [minValue]="0" 
+            (valueChanged)="lessonSelected.emit( {lesson_index: $event.object.value} )"
+                [maxValue]="lessons.length" row="0" col="1" colSpan="1">
+
+            </NumberPicker>-->
+</DockLayout>
+
+<StackLayout orientation="horizontal"
+             *ngIf="showLoadButtons">
+
+        <Button class="button-style"
+                text="Load"
+                (tap)="gotoLesson.emit( {lesson_index: selectedLessonIndex, force_reload: false})"></Button>
+        <Button class="button-style"
+                text="Force Refresh"
+                (tap)="gotoLesson.emit( {lesson_index: selectedLessonIndex, force_reload: true})"></Button>
+
+</StackLayout>

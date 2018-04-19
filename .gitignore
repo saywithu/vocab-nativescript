@@ -1,0 +1,6 @@
+/node_modules
+/src
+/app_linked
+/platforms
+app/**/*.css
+.tmp_backup

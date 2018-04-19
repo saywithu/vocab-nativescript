@@ -1,0 +1,33 @@
+
+
+
+# Export JAVA_HOME variable
+ENV JAVA_HOME /usr/lib/jvm/java-7-oracle
+
+# Install latest android tools and system images
+RUN ( sleep 4 && while [ 1 ]; do sleep 1; echo y; done ) | android update sdk --no-ui --force -a --filter \
+    platform-tool,android-19,android-21,android-22,build-tools-22.0.1,sys-img-x86-android-19,sys-img-x86-android-21,sys-img-x86-android-22,sys-img-armeabi-v7a-android-19,sys-img-armeabi-v7a-android-21,sys-img-armeabi-v7a-android-22 && \
+    echo "y" | android update adb
+
+
+
+# Run sshd
+RUN mkdir /var/run/sshd && \
+    echo "root:$ROOTPASSWORD" | chpasswd && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd && \
+    echo "export VISIBLE=now" >> /etc/profile
+
+ENV NOTVISIBLE "in users profile"
+
+# Add entrypoint
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+
+
+
+
+
+
+# ENTRYPOINT ["/entrypoint.sh"]

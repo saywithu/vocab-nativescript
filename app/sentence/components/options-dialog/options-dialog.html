@@ -1,0 +1,17 @@
+
+<StackLayout margin="12" horizontalAlignment="center" verticalAlignment="center">
+    
+    <Label marginBottom="12" horizontalAlignment="center" class="label-style" text="Tweak Audio"></Label>
+    
+    <StackLayout orientation="vertical">
+        <Button class="button-style" text="Unload" (tap)="changeStart(-0.25)"></Button>
+
+    </StackLayout>
+    <StackLayout horizontalAlignment="center"  orientation="horizontal" marginTop="12">        
+        <Button class="button-style" text="OK" (tap)="close('Ok')"></Button>
+        <Button class="button-style" text="Cancel" (tap)="close('Cancel')"></Button>
+    </StackLayout>
+
+    <Label class="label-style" [text]="status"></Label>
+    
+</StackLayout>

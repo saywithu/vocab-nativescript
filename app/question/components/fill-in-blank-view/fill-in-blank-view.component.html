@@ -1,0 +1,74 @@
+<SideDrawerContainer (handleOptionsTap)="toggleNav($event)"
+                     [title]="title">
+    <lesson-select [selectedLessonIndex]="selectedLessonIndex | async"
+                   [lessons]="lessonsList | async"
+                   *ngIf="showNav"
+                   [showLoadButtons]="false"
+                   (lessonSelected)="handleLessonSelected($event)"
+                   (gotoLesson)="handleLessonSelected($event)">
+    </lesson-select>
+
+    <word-select *ngIf="showNav"
+                     [selectedWordIndex]="selectedWordIndex | async"
+                     [words]="wordsList | async"
+                     (wordSelected)="handleWordSelected($event)">
+    </word-select>
+
+
+    <Label class="word-label"
+           text="{{appStatus | async}}"></Label>
+
+
+    <StackLayout orientation="horizontal">
+        <Button class="button-style"
+                text="New"
+                (tap)="handleNewWord($event)"></Button>
+        <Button class="button-style"
+                text="Save"
+                (tap)="handleSaveWord($event, editWord)"></Button>
+        <Button class="button-style"
+                text="Delete"
+                (tap)="handleDeleteWord($event)"></Button>
+    </StackLayout>
+
+    <ScrollView orientation="vertical"
+                *ngIf="word$ | async; let word">
+        <StackLayout orientation="vertical">
+            <StackLayout orientation="horizontal">>
+                <Label class="field-label"
+                (tap)="handleRussianTap($event)"
+                       text="Russian:"></Label>
+
+                <TextView [(ngModel)]="editWord.text_ru"></TextView>
+            </StackLayout>
+            <StackLayout orientation="horizontal">>
+                <Label class="field-label"
+                       text="French:"></Label>
+                <TextView [(ngModel)]="editWord.text_fr"></TextView>
+            </StackLayout>
+            <StackLayout orientation="horizontal">>
+                <Label class="field-label"
+                       text="Notes:"></Label>
+                <TextView [(ngModel)]="editWord.notes"></TextView>
+            </StackLayout>
+
+            <vocab-audio-settings title="Word sound"
+                                  [(startTime)]="editWord.audio_start_time"
+                                  [(stopTime)]="editWord.audio_stop_time"
+                                  [audioFile]="editWord.audio_file"></vocab-audio-settings>
+
+            <vocab-audio-settings title="Word sound"
+                                  [(startTime)]="editWord.word_audio_start_time"
+                                  [(stopTime)]="editWord.word_audio_stop_time"
+                                  [audioFile]="editWord.audio_file"></vocab-audio-settings>
+
+            <Label class="place-holder"
+                   text=" ">
+
+            </Label>
+        </StackLayout>
+
+
+    </ScrollView>
+
+</SideDrawerContainer>

@@ -1,0 +1,45 @@
+
+
+
+%right-or-wrong {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    display: inline;
+    padding: 0 5px;
+    border: solid black 1px;
+  }
+  
+
+.wrong {
+    @extend %right-or-wrong;
+    background-color: red;
+}
+
+.right {
+    @extend %right-or-wrong;
+    background-color: lightgreen;
+}
+
+.answer-edit {
+    max-width: 300px;
+    display: inline-block;
+}
+.view-answer {
+    display: inline;
+    grid-column-start: 1;
+    grid-column-end: 2;
+}
+
+.answer-list-show-answer {
+    display: grid;
+    grid-template-columns: minmax(20px, max-content) minmax(20px, max-content) 1fr;
+    grid-column-gap: 20px;
+}
+
+button {
+    margin: 5px;
+}
+
+.answer-number {
+    display: inline;
+}

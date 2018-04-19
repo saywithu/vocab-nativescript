@@ -1,0 +1,28 @@
+<SideDrawerContainer (handleOptionsTap)="handleOptionsTap($event)"
+                     [title]="title">
+
+                        
+    <Label class="sentence-label"
+    [text]="appStatus$ | async"></Label>
+
+    <lesson-select [selectedLessonIndex]="selectedLessonIndex$ | async"
+                   [lessons]="lessonsList$ | async"
+                   (lessonSelected)="handleLessonSelected($event)"
+                   (gotoLesson)="handleGotoLesson($event)"></lesson-select>
+
+    <ScrollView orientation="vertical"
+                (swipe)="onSwipe($event)">
+
+        <StackLayout orientation="vertical">
+
+            <StackLayout orientation="horizontal"
+                         *ngFor="let sentence of sentenceList$ | async; let sentenceIndex = index">
+                <Label [text]="sentenceIndex+1"></Label>
+                <Label text=". ("></Label>
+                <Label [text]="sentence.known_confidence"></Label>
+                <Label text=") "></Label>
+                <Label [text]="sentence.text_fr"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</SideDrawerContainer>

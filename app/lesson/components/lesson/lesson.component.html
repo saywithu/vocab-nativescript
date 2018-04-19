@@ -1,0 +1,13 @@
+<SideDrawerContainer (handleOptionsTap)="handleOptionsTap($event)"
+                     [title]="title">
+
+
+    <Label [text]="status"></Label>
+
+    <lesson-select [selectedLessonIndex]="selectedLessonIndex | async"
+                   [lessons]="lessonsList | async"
+                   (lessonSelected)="handleLessonSelected($event)"
+                   (gotoLesson)="handleGotoLesson($event)"></lesson-select>
+
+
+</SideDrawerContainer>

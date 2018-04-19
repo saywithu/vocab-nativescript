@@ -1,0 +1,23 @@
+<SideDrawerContainer (handleOptionsTap)="handleLogClick($event)"
+                     title="About">
+
+    <Label class="h1 title"
+           text="Logs"></Label>
+    <ScrollView #logScroll orientation="vertical">
+        <StackLayout orientation="vertical"
+                     class="log">
+            <StackLayout orientation="horizontal"                      
+                         *ngFor="let logEntry of logEntries">
+                <Label class="log-time"
+                         text="{{logEntry.date | date:'MM-dd HH:mm:ss' }}"></Label>
+                <Label class="log-category"
+                       [text]="logEntry.category"></Label>
+                
+                <Label class="log-message"
+                textWrap ="true"
+                       [text]="logEntry.message | slice:0:800"></Label>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
+</SideDrawerContainer>

@@ -1,0 +1,95 @@
+<StackLayout margin="12"
+             horizontalAlignment="center"
+             verticalAlignment="center">
+
+        <StackLayout orientation="horizontal"
+                     class="top">
+                <Label marginBottom="12"
+                       horizontalAlignment="center"
+                       class="label-style"
+                       [text]="title"></Label>
+                <vocab-audio-control [audio_start_time]="startTime"
+                                     [audio_stop_time]="stopTime"
+                                     [audioFile]="audioFile"></vocab-audio-control>
+
+        </StackLayout>
+
+
+        <StackLayout orientation="vertical">
+                <GridLayout columns="auto, auto, auto, auto"
+                            rows="auto, auto"
+                            width="100%">
+                        <Label class="label-style"
+                               row="0"
+                               col="0"
+                               rowSpan="2"
+                               text="Start:"></Label>
+                        <TextField class="edit-style"
+                                   keyboardType="number"
+                                   row="0"
+                                   col="1"
+                                   rowSpan="2"
+                                   [ngModel]="startTime"
+                                   (ngModelChange)="startTimeChange.emit($event)"></TextField>
+
+                        <Button class="button-style"
+                                text="-3"
+                                row="0"
+                                col="3"
+                                (tap)="changeStart(-3)"></Button>
+                        <Button class="button-style"
+                                text="-0.25"
+                                row="0"
+                                col="2"
+                                (tap)="changeStart(-0.25)"></Button>
+                        <Button class="button-style"
+                                text="+0.25"
+                                row="1"
+                                col="2"
+                                (tap)="changeStart(0.25)"></Button>
+                        <Button class="button-style"
+                                text="+3"
+                                row="1"
+                                col="3"
+                                (tap)="changeStart(3)"></Button>
+                </GridLayout>
+                <<GridLayout columns="auto, auto, auto, auto"
+                             rows="auto, auto"
+                             width="100%">
+                        <Label row="0"
+                               col="0"
+                               rowSpan="2"
+                               class="label-style"
+                               text="Stop:"></Label>
+                        <TextField class="edit-style"
+                                   row="0"
+                                   col="1"
+                                   rowSpan="2"
+                                   keyboardType="number"
+                                   [ngModel]="stopTime"
+                                   (ngModelChange)="stopTimeChange.emit($event)"></TextField>
+                        <Button class="button-style"
+                                text="-3"
+                                row="0"
+                                col="3"
+                                (tap)="changeStop(-3)"></Button>
+                        <Button class="button-style"
+                                text="-0.25"
+                                row="0"
+                                col="2"
+                                (tap)="changeStop(-0.25)"></Button>
+                        <Button class="button-style"
+                                text="+0.25"
+                                row="1"
+                                col="2"
+                                (tap)="changeStop(0.25)"></Button>
+                        <Button class="button-style"
+                                text="+3"
+                                row="1"
+                                col="3"
+                                (tap)="changeStop(3)"></Button>
+                        </GridLayout>
+        </StackLayout>
+
+
+</StackLayout>

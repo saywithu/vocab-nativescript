@@ -1,0 +1,34 @@
+Label {
+    vertical-align: center;
+    horizontal-align: center;
+    font-size: 15px;
+
+    /*
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+*/
+    width: 100%; 
+    text-align: center;
+
+}
+
+StackLayout {
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+}
+
+Button {
+    text-transform: none;
+    width: 150px;
+
+    .next {
+        horizontal-align: right;
+    }
+
+    .prev {
+        horizontal-align: left;
+    }
+}

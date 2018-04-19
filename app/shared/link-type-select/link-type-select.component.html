@@ -1,0 +1,21 @@
+<DockLayout stretchLastChild="true">
+        <Button text="<<"
+                dock="left"
+                (tap)="sentenceSelected.emit( {sentence_index: 0})"></Button>
+
+        <Button class="prev"
+                text="<"
+                dock="left"
+                (tap)="sentenceSelected.emit( {sentence_index: selectedSentenceIndex - 1})"></Button>
+
+        <Button text=">>"
+                dock="right"
+                (tap)="sentenceSelected.emit( {sentence_index: selectedSentenceIndex + 5})"></Button>
+
+        <Button class="next"
+                text=">"
+                dock="right"
+                (tap)="sentenceSelected.emit( {sentence_index: selectedSentenceIndex + 1})"></Button>
+        <Label text="Sent. {{selectedSentenceIndex + 1}} of {{sentences.length}}"></Label>
+
+</DockLayout>

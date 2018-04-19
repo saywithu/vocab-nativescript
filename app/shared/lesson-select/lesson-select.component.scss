@@ -1,0 +1,22 @@
+%black-border {
+    border-color: black;
+    border-style: solid;
+    border-width: 1px; 
+}
+.nav {
+    Button {
+        width: 150px;
+    } 
+    Label {
+        vertical-align:center; 
+        font-size:18;
+        margin-left:10px
+    } 
+    .lesson-label {        
+        /* @extend %black-border; */
+        horizontal-align: center; 
+    }
+    StackLayout {
+        width: 100%
+    }
+}

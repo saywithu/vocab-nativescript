@@ -1,0 +1,28 @@
+
+<StackLayout margin="12" horizontalAlignment="center" verticalAlignment="center">
+    
+    <Label marginBottom="12" horizontalAlignment="center" class="label-style" text="Tweak Audio"></Label>
+    
+    <StackLayout orientation="vertical">
+        <StackLayout orientation="horizontal">
+            <Label class="label-style" text="Start:"></Label>
+            <TextField class="edit-style" [text]="sentence.audio_start_time"></TextField>
+
+            <Button class="button-style" text="-0.25" (tap)="changeStart(-0.25)"></Button>
+            <Button class="button-style" text="+0.25" (tap)="changeStart(0.25)"></Button>
+        </StackLayout>
+        <StackLayout orientation="horizontal">
+            <Label class="label-style" text="Stop:"></Label>
+            <TextField class="edit-style" [text]="sentence.audio_stop_time"></TextField>
+            <Button class="button-style" text="-0.25" (tap)="changeStop(-0.25)"></Button>
+            <Button class="button-style" text="+0.25" (tap)="changeStop(0.25)"></Button>
+        </StackLayout>
+    </StackLayout>
+    <StackLayout horizontalAlignment="center"  orientation="horizontal" marginTop="12">        
+        <Button class="button-style" text="OK" (tap)="handleSaveAudioTimes()"></Button>
+        <Button class="button-style" text="Cancel" (tap)="close('Cancel')"></Button>
+    </StackLayout>
+
+    <Label class="label-style" [text]="status"></Label>
+    
+</StackLayout>

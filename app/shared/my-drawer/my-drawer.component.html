@@ -1,0 +1,20 @@
+<!--
+The MyDrawer custom component view is where you define what will be displayed in the app drawer.
+Feel free to customize layouts and components to change how your app drawer looks.
+-->
+<GridLayout rows="auto, *" class="sidedrawer sidedrawer-left">
+    <StackLayout row="0" class="sidedrawer-header">
+        <Label class="sidedrawer-header-image fa" text="&#xf2bd;"></Label>
+        <Label class="sidedrawer-header-brand" text="User Name"></Label>
+        <Label class="footnote" text="username@mail.com"></Label>
+    </StackLayout>
+
+    <ScrollView row="1">
+        <StackLayout class="sidedrawer-content">
+            <MyDrawerItem *ngFor="let menuItem of menuItems" [title]="menuItem.title" [route]="menuItem.link[0]" 
+                [icon]="menuItem.icon" icon2="&#xf015;" [isSelected]="isPageSelected(menuItem.title)">
+            </MyDrawerItem>
+            
+        </StackLayout>
+    </ScrollView>
+</GridLayout>

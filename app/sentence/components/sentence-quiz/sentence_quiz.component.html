@@ -1,0 +1,38 @@
+<SideDrawerContainer 
+    (handleOptionsTap)="handleShowAudioDialog($event)" [title]="title">
+
+    
+    
+    <StackLayout *ngIf="sentence$ | async; let sentence" orientation="vertical">
+            
+        <sentence-select [selectedSentenceIndex]="selectedSentenceIndex$ | async"
+                            [sentences]="sentencesList$ | async"
+                            (sentenceSelected)="handleSentenceSelected($event)">
+        </sentence-select>
+
+        <StackLayout orientation="horizontal">
+                <Button class="button-style" text="Hint {{alwaysShowRussian ? '!' : '.' }} " (tap)="handleToggleRussian()" 
+                (longPress) = "handleToggleRussianLongPress($event)"></Button>
+            <Button class="button-style" text="Clear" (tap)="handleClearText($event)"></Button>
+            <Button class="button-style" text="Play" (tap)="handlePlayAudio()"></Button>
+        </StackLayout>
+
+        <ScrollView orientation="vertical" (swipe)="onSwipe($event)">
+
+            <StackLayout orientation="vertical" >
+                
+                <TextField #scratchTextField class="sentence-label" [text]="scratchText" textWrap="true"></TextField>
+                <Label *ngIf="russianVisible" [text]="sentence.text_ru" textWrap="true"></Label>
+                
+                
+                <Label 
+                        class="sentence-label" 
+                        (tap)="handleShowConfidenceDialog()"
+                        text="Confidence: {{editSentence.known_confidence}} "></Label>
+                
+                <Label  [text]="editSentence.text_fr" textWrap="true"></Label>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</SideDrawerContainer>
+    
