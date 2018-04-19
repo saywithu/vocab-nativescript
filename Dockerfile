@@ -63,7 +63,7 @@ COPY *.json *.js *.ts ./
 
 #WORKDIR "/gitroot/vocab/unified_front_end/nativescript"
 
-RUN tns prepare android
+#RUN tns prepare android
 RUN tns build android 
 
 #RUN mkdir /sdcard
