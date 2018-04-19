@@ -53,13 +53,14 @@ WORKDIR "/vocab-nativescript"
 
 COPY package.json ./
 
-RUN npm i
 RUN echo n | npm install -g nativescript
 RUN tns usage-reporting disable && tns error-reporting disable 
 
-#COPY *.json *.js *.ts ./
-#COPY app/vendor* ./app/
-#COPY app/App_Resources ./app/App_Resources
+COPY *.json *.js *.ts ./
+COPY app/vendor* ./app/
+COPY app/App_Resources ./app/App_Resources
+
+RUN npm i
 
 #RUN tns platform add android
 
