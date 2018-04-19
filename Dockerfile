@@ -1,7 +1,7 @@
 # Android development environment for ubuntu.
 # version 0.0.5
 
-FROM ubuntu
+FROM ubuntu:16.04
 
 RUN echo "debconf shared/accepted-oracle-license-v1-1 select true" | debconf-set-selections && \
     echo "debconf shared/accepted-oracle-license-v1-1 seen true" | debconf-set-selections
