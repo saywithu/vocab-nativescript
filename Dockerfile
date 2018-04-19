@@ -56,13 +56,15 @@ COPY package.json ./
 RUN echo n | npm install -g nativescript
 RUN tns usage-reporting disable && tns error-reporting disable 
 
+RUN npm install -g yarn
+
 COPY *.json *.js *.ts ./
 COPY app/vendor* ./app/
 COPY app/App_Resources ./app/App_Resources
 
-RUN npm i
-
 #RUN tns platform add android
+
+RUN yarn install
 
 COPY app ./app
 
