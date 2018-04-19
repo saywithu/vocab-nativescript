@@ -49,22 +49,23 @@ ENV ANDROID_EMULATOR_PACKAGE "system-images;android-$ANDROID_PLATFORM_VERSION;go
 
 RUN sdkmanager --verbose  "build-tools;25.0.2" "platforms;android-23"  "extras;android;m2repository" "extras;google;m2repository"  "$ANDROID_EMULATOR_PACKAGE" "emulator"
 
+WORKDIR "/vocab-nativescript"
+
+COPY package.json ./
+
 RUN npm i
 RUN echo n | npm install -g nativescript
 RUN tns usage-reporting disable && tns error-reporting disable 
 
-WORKDIR "/vocab-nativescript"
+#COPY *.json *.js *.ts ./
+#COPY app/vendor* ./app/
+#COPY app/App_Resources ./app/App_Resources
 
-COPY *.json *.js *.ts ./
-COPY app/vendor* ./app/
-COPY app/App_Resources ./app/App_Resources
-
-RUN tns platform add android
+#RUN tns platform add android
 
 COPY app ./app
 
-
-RUN tns build android
+#RUN tns build android
 
 #RUN mkdir /sdcard
 
